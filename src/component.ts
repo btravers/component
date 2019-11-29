@@ -29,7 +29,7 @@ function createElement<P extends Props>(
   }
 }
 
-function createTextElement(text: any): ComponentHTMLElement {
+function createTextElement(text: string): ComponentHTMLElement {
   return {
     type: TEXT_ELEMENT,
     props: {

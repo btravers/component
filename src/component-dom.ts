@@ -121,7 +121,7 @@ function updateDom<T extends HTMLElement | Text, K extends keyof T>(
 
 function commitRoot() {
   deletions.forEach(commitWork)
-  commitWork((wipRoot && wipRoot.child) || undefined)
+  commitWork(wipRoot?.child)
   currentRoot = wipRoot
   wipRoot = null
 }
@@ -228,14 +228,14 @@ function updateHostComponent(fiber: HostFiber) {
 
 function reconcileChildren(wipFiber: HostFiber | FunctionFiber, elements: ComponentHTMLElement[]) {
   let index = 0
-  let oldFiber = wipFiber.alternate && wipFiber.alternate.child
+  let oldFiber = wipFiber.alternate?.child
   let prevSibling: HostFiber | FunctionFiber | null = null
 
   while (index < elements.length || oldFiber) {
     const element = elements[index]
     let newFiber: HostFiber | FunctionFiber | null = null
 
-    const sameType = oldFiber && element && element.type === oldFiber.type
+    const sameType = oldFiber && element?.type === oldFiber.type
 
     if (sameType) {
       newFiber = {
